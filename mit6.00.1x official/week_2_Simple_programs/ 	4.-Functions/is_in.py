@@ -6,16 +6,28 @@ Created on Wed Jun 27 18:01:18 2018
 @author: prime
 """
 
-def gcdRecur(a, b):
+def isIn(char, aStr):
     '''
-    a, b: positive integers
+    char: a single character
+    aStr: an alphabetized string
     
-    returns: a positive integer, the greatest common divisor of a & b.
+    returns: True if char is in aStr; False otherwise
     '''
     # Your code here
-    if b == 0:
-        return a
-    elif a == 0:
-        return b
-    else :
-        return gcdRecur(b,a%b)
+    if len(aStr) == 0:
+        return False
+    elif len(aStr) == 1:
+        if char == aStr[0]:
+            return True
+        else:
+            return False
+    else:
+        high = len(aStr) -1
+        low = 0
+        ans = len(aStr)//2
+        if char == aStr[ans]:
+            return True
+        elif aStr[ans] > char:
+            return isIn(char , aStr[:ans])
+        elif aStr[ans] < char:
+            return isIn(char , aStr[ans+1:])
